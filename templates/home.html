@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HousePrice AI - Professional Real Estate Valuation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .hero-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .search-shadow {
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .house-bg {
+            background-image: url('/static/GettyImages-157382018.jpg?v=1');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        
+        .overlay {
+            background: rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero-text {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+        
+        .hero-subtitle {
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+        }
+    </style>
+</head>
+<body class="font-inter bg-white">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-2">
+                    <i class="fas fa-home text-2xl text-blue-600"></i>
+                    <span class="text-xl font-bold text-gray-900">HousePrice AI</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="/" class="text-gray-700 hover:text-blue-600 transition-colors duration-300 font-medium">Home</a>
+                    <a href="/about" class="text-gray-600 hover:text-gray-900 transition-colors duration-300">About</a>
+                    <a href="/analytics" class="text-gray-600 hover:text-gray-900 transition-colors duration-300">Analytics</a>
+                    <a href="/predict" class="text-gray-600 hover:text-gray-900 transition-colors duration-300">Predict</a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button class="text-gray-600 hover:text-gray-900 transition-colors duration-300">
+                        <i class="fas fa-user text-lg"></i>
+                    </button>
+                    <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-300">
+                        Sign In
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="house-bg relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+            <div class="text-center">
+                <!-- Main Headline -->
+                <h1 class="text-5xl md:text-6xl font-bold text-white mb-6 hero-text">
+                    How much is my house worth?
+                </h1>
+
+
+                <!-- CTA Button -->
+                <div class="max-w-2xl mx-auto">
+                    <a href="/predict" class="bg-blue-600 text-white px-12 py-4 rounded-lg font-semibold hover:bg-blue-700 transition-all duration-300 transform hover:scale-105 shadow-lg text-xl inline-flex items-center">
+                        <i class="fas fa-calculator mr-2"></i>Get House Valuation
+                    </a>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <div class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">
+                    Why Choose HousePrice AI?
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Professional real estate valuation powered by advanced machine learning
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-2xl p-8 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="text-center">
+                        <i class="fas fa-brain text-4xl text-blue-600 mb-4"></i>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">AI-Powered Accuracy</h3>
+                        <p class="text-gray-600">87% accuracy using advanced Ridge Regression model trained on comprehensive property data</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-2xl p-8 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="text-center">
+                        <i class="fas fa-bolt text-4xl text-green-600 mb-4"></i>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Instant Results</h3>
+                        <p class="text-gray-600">Get your house valuation in under 2 minutes with our streamlined process</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-2xl p-8 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="text-center">
+                        <i class="fas fa-chart-line text-4xl text-purple-600 mb-4"></i>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Professional Insights</h3>
+                        <p class="text-gray-600">Detailed analytics and market insights to help you understand your property value</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stats Section -->
+    <div class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 text-center">
+                <div>
+                    <div class="text-4xl font-bold text-blue-600 mb-2">87%</div>
+                    <div class="text-gray-600">Accuracy Rate</div>
+                </div>
+                <div>
+                    <div class="text-4xl font-bold text-green-600 mb-2">1,459</div>
+                    <div class="text-gray-600">Properties Analyzed</div>
+                </div>
+                <div>
+                    <div class="text-4xl font-bold text-purple-600 mb-2">64</div>
+                    <div class="text-gray-600">Features Evaluated</div>
+                </div>
+                <div>
+                    <div class="text-4xl font-bold text-orange-600 mb-2">2 min</div>
+                    <div class="text-gray-600">Average Time</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- How It Works Section -->
+    <div class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">
+                    How It Works
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Simple steps to get your professional house valuation
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center">
+                    <div class="bg-blue-600 text-white rounded-full w-16 h-16 flex items-center justify-center text-2xl font-bold mx-auto mb-4">1</div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Enter Property Details</h3>
+                    <p class="text-gray-600">Fill out our simple form with your property's key features and characteristics</p>
+                </div>
+                <div class="text-center">
+                    <div class="bg-green-600 text-white rounded-full w-16 h-16 flex items-center justify-center text-2xl font-bold mx-auto mb-4">2</div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">AI Analysis</h3>
+                    <p class="text-gray-600">Our advanced AI model analyzes your property using 64 different features</p>
+                </div>
+                <div class="text-center">
+                    <div class="bg-purple-600 text-white rounded-full w-16 h-16 flex items-center justify-center text-2xl font-bold mx-auto mb-4">3</div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Get Your Valuation</h3>
+                    <p class="text-gray-600">Receive your professional house valuation with detailed insights in under 2 minutes</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA Section -->
+    <div class="py-20 bg-gray-900">
+        <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold text-white mb-6">
+                Ready to Get Your House Valuation?
+            </h2>
+            <p class="text-xl text-gray-300 mb-8">
+                Join thousands of homeowners who trust our AI-powered valuation system
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="/predict" class="bg-blue-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-blue-700 transition-all duration-300 transform hover:scale-105">
+                    <i class="fas fa-calculator mr-2"></i>Get Your Valuation
+                </a>
+                <a href="/analytics" class="bg-transparent border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-gray-900 transition-all duration-300">
+                    <i class="fas fa-chart-line mr-2"></i>View Analytics
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <i class="fas fa-home text-2xl text-blue-400"></i>
+                        <span class="text-xl font-bold text-white">HousePrice AI</span>
+                    </div>
+                    <p class="text-gray-400">
+                        Professional real estate valuation powered by advanced machine learning.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-white font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="/" class="text-gray-400 hover:text-white transition-colors">Home</a></li>
+                        <li><a href="/about" class="text-gray-400 hover:text-white transition-colors">About</a></li>
+                        <li><a href="/analytics" class="text-gray-400 hover:text-white transition-colors">Analytics</a></li>
+                        <li><a href="/predict" class="text-gray-400 hover:text-white transition-colors">Predict</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-white font-semibold mb-4">Features</h3>
+                    <ul class="space-y-2">
+                        <li class="text-gray-400">AI-Powered Valuation</li>
+                        <li class="text-gray-400">Instant Results</li>
+                        <li class="text-gray-400">Professional Analytics</li>
+                        <li class="text-gray-400">Market Insights</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-white font-semibold mb-4">Contact</h3>
+                    <ul class="space-y-2">
+                        <li class="text-gray-400">support@housepriceai.com</li>
+                        <li class="text-gray-400">+1 (555) 123-4567</li>
+                        <li class="text-gray-400">Privacy Policy</li>
+                        <li class="text-gray-400">Terms of Service</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-gray-700 text-center">
+                <p class="text-gray-400">
+                    © 2024 HousePrice AI. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html> 

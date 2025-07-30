@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Your Valuation - HousePrice AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <script>
+        // Scroll to results when page loads with prediction or error
+        document.addEventListener('DOMContentLoaded', function() {
+            const resultsSection = document.querySelector('#prediction-results');
+            const errorSection = document.querySelector('#error-message');
+            
+            if (resultsSection) {
+                setTimeout(function() {
+                    resultsSection.scrollIntoView({ 
+                        behavior: 'smooth', 
+                        block: 'start' 
+                    });
+                }, 100);
+            } else if (errorSection) {
+                setTimeout(function() {
+                    errorSection.scrollIntoView({ 
+                        behavior: 'smooth', 
+                        block: 'start' 
+                    });
+                }, 100);
+            }
+        });
+    </script>
+    <style>
+        .hero-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .search-shadow {
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .house-bg {
+            background-image: url('/static/GettyImages-157382018.jpg?v=1');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        
+        .overlay {
+            background: rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero-text {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+        
+        .hero-subtitle {
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+        }
+    </style>
+</head>
+<body class="font-inter bg-white">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-2">
+                    <i class="fas fa-home text-2xl text-blue-600"></i>
+                    <span class="text-xl font-bold text-gray-900">HousePrice AI</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="/" class="text-gray-600 hover:text-gray-900 transition-colors duration-300">Home</a>
+                    <a href="/about" class="text-gray-600 hover:text-gray-900 transition-colors duration-300">About</a>
+                    <a href="/analytics" class="text-gray-600 hover:text-gray-900 transition-colors duration-300">Analytics</a>
+                    <a href="/predict" class="text-gray-700 hover:text-blue-600 transition-colors duration-300 font-medium">Predict</a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button class="text-gray-600 hover:text-gray-900 transition-colors duration-300">
+                        <i class="fas fa-user text-lg"></i>
+                    </button>
+                    <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-300">
+                        Sign In
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="house-bg relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+            <div class="text-center">
+                <h1 class="text-5xl md:text-6xl font-bold text-white mb-6 hero-text">
+                    Get Your House Valuation
+                </h1>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Prediction Form Section -->
+    <div class="py-20 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white rounded-2xl p-8 search-shadow">
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl font-bold text-gray-900 mb-4">
+                        <i class="fas fa-calculator mr-2 text-blue-600"></i>Property Details
+                    </h2>
+                    <p class="text-gray-600">
+                        Fill out the form below with your property information to get an accurate valuation
+                    </p>
+                </div>
+
+                <form method="POST" action="/predict" class="space-y-8">
+                    <!-- Property Type & Quality -->
+                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2">Building Class</label>
+                            <select name="building_class" class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-blue-500 focus:outline-none transition-colors" required>
+                                <option value="">Select Building Class</option>
+                                <option value="60">2-STORY 1946 & NEWER</option>
+                                <option value="20">1-STORY 1946 & NEWER</option>
+                                <option value="70">2-STORY 1945 & OLDER</option>
+                                <option value="50">1-1/2 STORY FINISHED</option>
+                                <option value="80">SPLIT OR MULTI-LEVEL</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2">Overall Quality</label>
+                            <select name="overall_material" class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-blue-500 focus:outline-none transition-colors" required>
+                                <option value="">Select Quality</option>
+                                <option value="5">5 - Average</option>
+                                <option value="6">6 - Above Average</option>
+                                <option value="7">7 - Good</option>
+                                <option value="8">8 - Very Good</option>
+                                <option value="9">9 - Excellent</option>
+                                <option value="10">10 - Very Excellent</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2">House Condition</label>
+                            <select name="house_condition" class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-blue-500 focus:outline-none transition-colors" required>
+                                <option value="">Select Condition</option>
+                                <option value="5">5 - Average</option>
+                                <option value="6">6 - Above Average</option>
+                                <option value="7">7 - Good</option>
+                                <option value="8">8 - Very Good</option>
+                                <option value="9">9 - Excellent</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2">House Life (years)</label>
+                            <input type="number" name="house_life" class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-blue-500 focus:outline-none transition-colors" required placeholder="e.g., 15" min="0" max="200">
+                        </div>
+                    </div>
+
+                    <!-- Property Size -->
+                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2">Lot Size (sq ft)</label>
+                            <input type="number" name="lot_size" class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-blue-500 focus:outline-none transition-colors" required placeholder="e.g., 8500" min="1000" max="100000">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2">First Floor Area (sq ft)</label>
+                            <input type="number" name="first_floor_area" class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-blue-500 focus:outline-none transition-colors" required placeholder="e.g., 1200" min="0" max="10000">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2">Grade Living Area (sq ft)</label>
+                            <input type="number" name="grade_living_area" class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-blue-500 focus:outline-none transition-colors" required placeholder="e.g., 1500" min="0" max="10000">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2">Garage Area (sq ft)</label>
+                            <input type="number" name="garage_area" class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-blue-500 focus:outline-none transition-colors" required placeholder="e.g., 400" min="0" max="5000">
+                        </div>
+                    </div>
+
+                    <!-- Additional Property Details -->
+                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2">Bedrooms Above Grade</label>
+                            <input type="number" name="bedroom_above_grade" class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-blue-500 focus:outline-none transition-colors" required placeholder="e.g., 3" min="0" max="10">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2">Full Bathrooms Above Grade</label>
+                            <input type="number" name="full_bathroom_above_grade" class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-blue-500 focus:outline-none transition-colors" required placeholder="e.g., 2" min="0" max="5">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2">Half Bathrooms Above Grade</label>
+                            <input type="number" name="half_bathroom_above_grade" class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-blue-500 focus:outline-none transition-colors" required placeholder="e.g., 1" min="0" max="5">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2">Total Rooms Above Grade</label>
+                            <input type="number" name="rooms_above_grade" class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-blue-500 focus:outline-none transition-colors" required placeholder="e.g., 6" min="0" max="20">
+                        </div>
+                    </div>
+
+                    <!-- Property Features -->
+                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2">Foundation Type</label>
+                            <select name="foundation_type" class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-blue-500 focus:outline-none transition-colors" required>
+                                <option value="">Select Foundation</option>
+                                <option value="BrkTil">Brick & Tile</option>
+                                <option value="CBlock">Cinder Block</option>
+                                <option value="PConc">Poured Concrete</option>
+                                <option value="Slab">Slab</option>
+                                <option value="Stone">Stone</option>
+                                <option value="Wood">Wood</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2">Kitchen Quality</label>
+                            <select name="kitchen_quality" class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-blue-500 focus:outline-none transition-colors" required>
+                                <option value="">Select Quality</option>
+                                <option value="Ex">Excellent</option>
+                                <option value="Gd">Good</option>
+                                <option value="TA">Typical/Average</option>
+                                <option value="Fa">Fair</option>
+                                <option value="Po">Poor</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2">Fireplaces</label>
+                            <input type="number" name="fireplaces" class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-blue-500 focus:outline-none transition-colors" required placeholder="e.g., 1" min="0" max="5">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2">Neighborhood</label>
+                            <select name="neighborhood" class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-blue-500 focus:outline-none transition-colors" required>
+                                <option value="">Select Neighborhood</option>
+                                <option value="Blmngtn">Bloomington Heights</option>
+                                <option value="Blueste">Bluestem</option>
+                                <option value="BrDale">Briardale</option>
+                                <option value="BrkSide">Brookside</option>
+                                <option value="ClearCr">Clear Creek</option>
+                                <option value="CollgCr">College Creek</option>
+                                <option value="Crawfor">Crawford</option>
+                                <option value="Edwards">Edwards</option>
+                                <option value="Gilbert">Gilbert</option>
+                                <option value="IDOTRR">Iowa DOT and Rail Road</option>
+                                <option value="MeadowV">Meadow Village</option>
+                                <option value="Mitchel">Mitchell</option>
+                                <option value="NAmes">North Ames</option>
+                                <option value="NoRidge">Northridge</option>
+                                <option value="NPkVill">Northpark Villa</option>
+                                <option value="NridgHt">Northridge Heights</option>
+                                <option value="NWAmes">Northwest Ames</option>
+                                <option value="OldTown">Old Town</option>
+                                <option value="SWISU">South & West of Iowa State University</option>
+                                <option value="Sawyer">Sawyer</option>
+                                <option value="SawyerW">Sawyer West</option>
+                                <option value="Somerst">Somerset</option>
+                                <option value="StoneBr">Stone Brook</option>
+                                <option value="Timber">Timberland</option>
+                                <option value="Veenker">Veenker</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Hidden fields for required features -->
+                    <input type="hidden" name="zoning_class" value="RL">
+                    <input type="hidden" name="lot_extent" value="60.0">
+                    <input type="hidden" name="lane_type" value="Grvl">
+                    <input type="hidden" name="property_shape" value="Reg">
+                    <input type="hidden" name="land_outline" value="Lvl">
+                    <input type="hidden" name="lot_configuration" value="Inside">
+                    <input type="hidden" name="property_slope" value="Gtl">
+                    <input type="hidden" name="condition1" value="Norm">
+                    <input type="hidden" name="house_type" value="1Fam">
+                    <input type="hidden" name="house_design" value="1Story">
+                    <input type="hidden" name="roof_design" value="Gable">
+                    <input type="hidden" name="exterior1st" value="VinylSd">
+                    <input type="hidden" name="exterior2nd" value="VinylSd">
+                    <input type="hidden" name="brick_veneer_type" value="None">
+                    <input type="hidden" name="brick_veneer_area" value="0.0">
+                    <input type="hidden" name="exterior_material" value="VinylSd">
+                    <input type="hidden" name="exterior_condition" value="TA">
+                    <input type="hidden" name="basement_height" value="TA">
+                    <input type="hidden" name="basement_condition" value="TA">
+                    <input type="hidden" name="exposure_level" value="No">
+                    <input type="hidden" name="bsmt_fin_type1" value="GLQ">
+                    <input type="hidden" name="bsmt_fin_sf1" value="0">
+                    <input type="hidden" name="bsmt_fin_type2" value="Unf">
+                    <input type="hidden" name="bsmt_fin_sf2" value="0">
+                    <input type="hidden" name="bsmt_unf_sf" value="0">
+                    <input type="hidden" name="total_basement_area" value="0">
+                    <input type="hidden" name="heating_quality" value="TA">
+                    <input type="hidden" name="air_conditioning" value="N">
+                    <input type="hidden" name="electrical_system" value="SBrkr">
+                    <input type="hidden" name="second_floor_area" value="0">
+                    <input type="hidden" name="underground_full_bathroom" value="0">
+                    <input type="hidden" name="underground_half_bathroom" value="0">
+                    <input type="hidden" name="functional_rate" value="Typ">
+                    <input type="hidden" name="fireplace_quality" value="TA">
+                    <input type="hidden" name="garage" value="Attchd">
+                    <input type="hidden" name="garage_finish_year" value="Unf">
+                    <input type="hidden" name="garage_size" value="2">
+                    <input type="hidden" name="garage_quality" value="TA">
+                    <input type="hidden" name="garage_condition" value="TA">
+                    <input type="hidden" name="paved_drive" value="Y">
+                    <input type="hidden" name="w_deck_area" value="0">
+                    <input type="hidden" name="open_lobby_area" value="0">
+                    <input type="hidden" name="enclosed_lobby_area" value="0">
+                    <input type="hidden" name="screen_lobby_area" value="0">
+                    <input type="hidden" name="fence_quality" value="No_Fence">
+                    <input type="hidden" name="sale_type" value="WD">
+                    <input type="hidden" name="sale_condition" value="Normal">
+
+                    <!-- Submit Button -->
+                    <div class="text-center pt-6">
+                        <button type="submit" class="bg-blue-600 text-white px-12 py-4 rounded-lg font-semibold hover:bg-blue-700 transition-all duration-300 transform hover:scale-105 shadow-lg text-xl">
+                            <i class="fas fa-calculator mr-2"></i>Get Your Valuation
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Prediction Result -->
+    {% if prediction %}
+    <div class="py-20 bg-white" id="prediction-results">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-gradient-to-br from-green-50 to-blue-50 rounded-2xl p-8 search-shadow">
+                <div class="text-center">
+                    <h2 class="text-3xl font-bold text-gray-900 mb-4">
+                        <i class="fas fa-dollar-sign text-green-500 mr-2"></i>Your House Valuation
+                    </h2>
+                    <div class="text-6xl font-bold text-green-600 mb-6">{{ prediction }}</div>
+                    <p class="text-gray-600 mb-8 text-lg">Based on your property details and our AI analysis</p>
+                    
+                    <div class="grid md:grid-cols-3 gap-6 mb-8">
+                        <div class="bg-white rounded-xl p-6 shadow-sm">
+                            <div class="text-center">
+                                <i class="fas fa-brain text-3xl text-blue-600 mb-2"></i>
+                                <div class="text-2xl font-bold text-blue-600">87%</div>
+                                <div class="text-sm text-gray-600">Accuracy Rate</div>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-xl p-6 shadow-sm">
+                            <div class="text-center">
+                                <i class="fas fa-chart-line text-3xl text-purple-600 mb-2"></i>
+                                <div class="text-2xl font-bold text-purple-600">AI</div>
+                                <div class="text-sm text-gray-600">Powered</div>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-xl p-6 shadow-sm">
+                            <div class="text-center">
+                                <i class="fas fa-clock text-3xl text-orange-600 mb-2"></i>
+                                <div class="text-2xl font-bold text-orange-600">2 min</div>
+                                <div class="text-sm text-gray-600">Estimate Time</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <a href="/predict" class="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-all duration-300">
+                            <i class="fas fa-calculator mr-2"></i>Get Another Valuation
+                        </a>
+                        <a href="/analytics" class="bg-transparent border-2 border-blue-600 text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-600 hover:text-white transition-all duration-300">
+                            <i class="fas fa-chart-line mr-2"></i>View Analytics
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Error Message -->
+    {% if error %}
+    <div class="py-20 bg-white" id="error-message">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-red-50 border border-red-200 rounded-2xl p-8">
+                <div class="text-center">
+                    <h3 class="text-2xl font-semibold text-red-600 mb-4">
+                        <i class="fas fa-exclamation-triangle mr-2"></i>Error
+                    </h3>
+                    <p class="text-red-600 text-lg">{{ error }}</p>
+                    <div class="mt-6">
+                        <a href="/predict" class="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-all duration-300">
+                            <i class="fas fa-redo mr-2"></i>Try Again
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Features Section -->
+    <div class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">
+                    Why Choose Our Valuation?
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Professional real estate valuation with advanced AI technology
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-2xl p-8 shadow-sm">
+                    <div class="text-center">
+                        <i class="fas fa-brain text-4xl text-blue-600 mb-4"></i>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">AI-Powered Accuracy</h3>
+                        <p class="text-gray-600">Our advanced Ridge Regression model achieves 87% accuracy using comprehensive property data analysis</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-2xl p-8 shadow-sm">
+                    <div class="text-center">
+                        <i class="fas fa-bolt text-4xl text-green-600 mb-4"></i>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Instant Results</h3>
+                        <p class="text-gray-600">Get your house valuation in under 2 minutes with our streamlined and user-friendly process</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-2xl p-8 shadow-sm">
+                    <div class="text-center">
+                        <i class="fas fa-chart-line text-4xl text-purple-600 mb-4"></i>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Professional Insights</h3>
+                        <p class="text-gray-600">Detailed analytics and market insights to help you understand your property's true value</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA Section -->
+    <div class="py-20 bg-gray-900">
+        <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold text-white mb-6">
+                Ready to Get Started?
+            </h2>
+            <p class="text-xl text-gray-300 mb-8">
+                Join thousands of homeowners who trust our AI-powered valuation system
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="/" class="bg-blue-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-blue-700 transition-all duration-300 transform hover:scale-105">
+                    <i class="fas fa-home mr-2"></i>Back to Home
+                </a>
+                <a href="/analytics" class="bg-transparent border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-gray-900 transition-all duration-300">
+                    <i class="fas fa-chart-line mr-2"></i>View Analytics
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <i class="fas fa-home text-2xl text-blue-400"></i>
+                        <span class="text-xl font-bold text-white">HousePrice AI</span>
+                    </div>
+                    <p class="text-gray-400">
+                        Professional real estate valuation powered by advanced machine learning.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-white font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="/" class="text-gray-400 hover:text-white transition-colors">Home</a></li>
+                        <li><a href="/about" class="text-gray-400 hover:text-white transition-colors">About</a></li>
+                        <li><a href="/analytics" class="text-gray-400 hover:text-white transition-colors">Analytics</a></li>
+                        <li><a href="/predict" class="text-gray-400 hover:text-white transition-colors">Predict</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-white font-semibold mb-4">Features</h3>
+                    <ul class="space-y-2">
+                        <li class="text-gray-400">AI-Powered Valuation</li>
+                        <li class="text-gray-400">Instant Results</li>
+                        <li class="text-gray-400">Professional Analytics</li>
+                        <li class="text-gray-400">Market Insights</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-white font-semibold mb-4">Contact</h3>
+                    <ul class="space-y-2">
+                        <li class="text-gray-400">support@housepriceai.com</li>
+                        <li class="text-gray-400">+1 (555) 123-4567</li>
+                        <li class="text-gray-400">Privacy Policy</li>
+                        <li class="text-gray-400">Terms of Service</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-gray-700 text-center">
+                <p class="text-gray-400">
+                    © 2024 HousePrice AI. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html> 

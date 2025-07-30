@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - HousePrice AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .hero-gradient {
+            background: linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%);
+        }
+        
+        .search-shadow {
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .house-bg {
+            background-image: url('/static/0270_638120839908158637.jpg?v=1');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        
+        .hero-text {
+            font-weight: 800;
+            letter-spacing: -0.025em;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .hero-subtitle {
+            font-weight: 600;
+            letter-spacing: 0.025em;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+<body class="font-inter bg-white">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-2">
+                    <i class="fas fa-home text-2xl text-blue-600"></i>
+                    <span class="text-xl font-bold text-gray-900">HousePrice AI</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="/" class="text-gray-600 hover:text-gray-900 transition-colors duration-300">Home</a>
+                    <a href="/about" class="text-gray-700 hover:text-blue-600 transition-colors duration-300 font-medium">About</a>
+                    <a href="/analytics" class="text-gray-600 hover:text-gray-900 transition-colors duration-300">Analytics</a>
+                    <a href="/predict" class="text-gray-600 hover:text-gray-900 transition-colors duration-300">Predict</a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button class="text-gray-600 hover:text-gray-900 transition-colors duration-300">
+                        <i class="fas fa-user text-lg"></i>
+                    </button>
+                    <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-300">
+                        Sign In
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero-gradient house-bg relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+            <div class="text-center">
+                <h1 class="text-5xl md:text-6xl text-white mb-6 hero-text">
+                    About HousePrice AI
+                </h1>
+                <p class="text-xl md:text-2xl text-white mb-8 max-w-3xl mx-auto hero-subtitle">
+                    Professional real estate valuation powered by advanced machine learning technology
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Project Overview -->
+    <div class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">
+                    Our Mission
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    To provide homeowners with accurate, professional house valuations using cutting-edge AI technology
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="bg-white rounded-2xl p-8 shadow-sm">
+                    <h3 class="text-2xl font-semibold text-gray-900 mb-4">
+                        <i class="fas fa-bullseye mr-2 text-blue-600"></i>Objective
+                    </h3>
+                    <p class="text-gray-600 mb-6">
+                        Develop a highly accurate machine learning model to predict house prices based on various property features. 
+                        Our goal is to provide reliable price estimates for real estate valuation using advanced AI techniques.
+                    </p>
+                    <h3 class="text-2xl font-semibold text-gray-900 mb-4">
+                        <i class="fas fa-database mr-2 text-green-600"></i>Dataset
+                    </h3>
+                    <p class="text-gray-600">
+                        Comprehensive dataset with 1,459 property records and 81 features including location, property characteristics, 
+                        condition, amenities, and market factors. The data covers diverse property types and market conditions.
+                    </p>
+                </div>
+                <div class="bg-white rounded-2xl p-8 shadow-sm">
+                    <h3 class="text-2xl font-semibold text-gray-900 mb-4">
+                        <i class="fas fa-chart-line mr-2 text-purple-600"></i>Methodology
+                    </h3>
+                    <p class="text-gray-600 mb-6">
+                        Applied comprehensive data preprocessing including missing value imputation, outlier detection, 
+                        feature engineering, and transformation techniques. Multiple regression models were evaluated 
+                        with cross-validation for optimal performance.
+                    </p>
+                    <h3 class="text-2xl font-semibold text-gray-900 mb-4">
+                        <i class="fas fa-trophy mr-2 text-orange-600"></i>Results
+                    </h3>
+                    <p class="text-gray-600">
+                        Achieved 87.80% R² score with Ridge Regression, demonstrating excellent predictive power 
+                        while maintaining model interpretability and generalization capability.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Technology Stack -->
+    <div class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">
+                    Technology Stack
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Built with modern technologies for optimal performance and accuracy
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center">
+                    <div class="bg-blue-50 rounded-2xl p-8 mb-6">
+                        <i class="fas fa-brain text-5xl text-blue-600 mb-4"></i>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Machine Learning</h3>
+                        <ul class="text-gray-600 text-sm space-y-1">
+                            <li>• scikit-learn</li>
+                            <li>• Ridge Regression</li>
+                            <li>• Cross-validation</li>
+                            <li>• Feature Engineering</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <div class="bg-green-50 rounded-2xl p-8 mb-6">
+                        <i class="fas fa-server text-5xl text-green-600 mb-4"></i>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Backend</h3>
+                        <ul class="text-gray-600 text-sm space-y-1">
+                            <li>• FastAPI</li>
+                            <li>• Python 3.9+</li>
+                            <li>• pandas & numpy</li>
+                            <li>• RESTful API</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <div class="bg-purple-50 rounded-2xl p-8 mb-6">
+                        <i class="fas fa-palette text-5xl text-purple-600 mb-4"></i>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Frontend</h3>
+                        <ul class="text-gray-600 text-sm space-y-1">
+                            <li>• Tailwind CSS</li>
+                            <li>• HTML5 & JavaScript</li>
+                            <li>• Responsive Design</li>
+                            <li>• Interactive Charts</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Data Processing Pipeline -->
+    <div class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">
+                    Data Processing Pipeline
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Our comprehensive approach to data preparation and model training
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="text-center">
+                    <div class="bg-white rounded-2xl p-6 shadow-sm">
+                        <div class="text-3xl font-bold text-blue-600 mb-2">1</div>
+                        <h3 class="text-lg font-semibold text-gray-900 mb-2">Data Cleaning</h3>
+                        <p class="text-gray-600 text-sm">Remove outliers, handle missing values, and standardize formats</p>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <div class="bg-white rounded-2xl p-6 shadow-sm">
+                        <div class="text-3xl font-bold text-green-600 mb-2">2</div>
+                        <h3 class="text-lg font-semibold text-gray-900 mb-2">Feature Engineering</h3>
+                        <p class="text-gray-600 text-sm">Create new features, transform variables, and encode categorical data</p>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <div class="bg-white rounded-2xl p-6 shadow-sm">
+                        <div class="text-3xl font-bold text-purple-600 mb-2">3</div>
+                        <h3 class="text-lg font-semibold text-gray-900 mb-2">Model Training</h3>
+                        <p class="text-gray-600 text-sm">Train multiple models with cross-validation and hyperparameter tuning</p>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <div class="bg-white rounded-2xl p-6 shadow-sm">
+                        <div class="text-3xl font-bold text-orange-600 mb-2">4</div>
+                        <h3 class="text-lg font-semibold text-gray-900 mb-2">Evaluation</h3>
+                        <p class="text-gray-600 text-sm">Assess performance using multiple metrics and select best model</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Model Performance -->
+    <div class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">
+                    Model Performance
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Our Ridge Regression model delivers exceptional accuracy and reliability
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="text-center">
+                    <div class="bg-gradient-to-br from-green-400 to-green-600 rounded-2xl p-8">
+                        <div class="text-4xl font-bold text-white mb-2">87.80%</div>
+                        <div class="text-white/90">R² Score</div>
+                        <div class="text-white/70 text-sm mt-2">Excellent fit</div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <div class="bg-gradient-to-br from-blue-400 to-blue-600 rounded-2xl p-8">
+                        <div class="text-4xl font-bold text-white mb-2">22,886</div>
+                        <div class="text-white/90">RMSE</div>
+                        <div class="text-white/70 text-sm mt-2">Low error</div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <div class="bg-gradient-to-br from-purple-400 to-purple-600 rounded-2xl p-8">
+                        <div class="text-4xl font-bold text-white mb-2">16,125</div>
+                        <div class="text-white/90">MAE</div>
+                        <div class="text-white/70 text-sm mt-2">Mean error</div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <div class="bg-gradient-to-br from-orange-400 to-orange-600 rounded-2xl p-8">
+                        <div class="text-4xl font-bold text-white mb-2">92.91%</div>
+                        <div class="text-white/90">Training Score</div>
+                        <div class="text-white/70 text-sm mt-2">High accuracy</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Key Features -->
+    <div class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">
+                    Key Features
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    What makes our house valuation system stand out
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="space-y-6">
+                    <div class="flex items-start space-x-4">
+                        <i class="fas fa-check-circle text-2xl text-green-500 mt-1"></i>
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-900 mb-1">Advanced Preprocessing</h3>
+                            <p class="text-gray-600 text-sm">Comprehensive data cleaning, outlier removal, and feature transformation</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-4">
+                        <i class="fas fa-check-circle text-2xl text-green-500 mt-1"></i>
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-900 mb-1">Multiple Models</h3>
+                            <p class="text-gray-600 text-sm">Evaluated Linear, Ridge, Lasso, and Elastic Net regression</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-4">
+                        <i class="fas fa-check-circle text-2xl text-green-500 mt-1"></i>
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-900 mb-1">Cross-Validation</h3>
+                            <p class="text-gray-600 text-sm">Robust model evaluation with k-fold cross-validation</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="space-y-6">
+                    <div class="flex items-start space-x-4">
+                        <i class="fas fa-check-circle text-2xl text-green-500 mt-1"></i>
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-900 mb-1">Feature Engineering</h3>
+                            <p class="text-gray-600 text-sm">Created meaningful features and applied transformations</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-4">
+                        <i class="fas fa-check-circle text-2xl text-green-500 mt-1"></i>
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-900 mb-1">Web Application</h3>
+                            <p class="text-gray-600 text-sm">Interactive web interface with real-time predictions</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-4">
+                        <i class="fas fa-check-circle text-2xl text-green-500 mt-1"></i>
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-900 mb-1">API Access</h3>
+                            <p class="text-gray-600 text-sm">RESTful API for programmatic access and integration</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA Section -->
+    <div class="py-20 bg-gray-900">
+        <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold text-white mb-6">
+                Ready to Try Our Technology?
+            </h2>
+            <p class="text-xl text-gray-300 mb-8">
+                Experience the power of AI-driven house price prediction
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="/predict" class="bg-blue-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-blue-700 transition-all duration-300 transform hover:scale-105">
+                    <i class="fas fa-calculator mr-2"></i>Get Your Valuation
+                </a>
+                <a href="/analytics" class="bg-transparent border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-gray-900 transition-all duration-300">
+                    <i class="fas fa-chart-line mr-2"></i>View Analytics
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <i class="fas fa-home text-2xl text-blue-400"></i>
+                        <span class="text-xl font-bold text-white">HousePrice AI</span>
+                    </div>
+                    <p class="text-gray-400">
+                        Professional real estate valuation powered by advanced machine learning.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-white font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="/" class="text-gray-400 hover:text-white transition-colors">Home</a></li>
+                        <li><a href="/about" class="text-gray-400 hover:text-white transition-colors">About</a></li>
+                        <li><a href="/analytics" class="text-gray-400 hover:text-white transition-colors">Analytics</a></li>
+                        <li><a href="/predict" class="text-gray-400 hover:text-white transition-colors">Predict</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-white font-semibold mb-4">Features</h3>
+                    <ul class="space-y-2">
+                        <li class="text-gray-400">AI-Powered Valuation</li>
+                        <li class="text-gray-400">Instant Results</li>
+                        <li class="text-gray-400">Professional Analytics</li>
+                        <li class="text-gray-400">Market Insights</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-white font-semibold mb-4">Contact</h3>
+                    <ul class="space-y-2">
+                        <li class="text-gray-400">support@housepriceai.com</li>
+                        <li class="text-gray-400">+1 (555) 123-4567</li>
+                        <li class="text-gray-400">Privacy Policy</li>
+                        <li class="text-gray-400">Terms of Service</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-gray-700 text-center">
+                <p class="text-gray-400">
+                    © 2024 HousePrice AI. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html> 

@@ -48,52 +48,49 @@
 
         /* GitHub Link */
         .github-link {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 1000;
             background: rgba(0, 0, 0, 0.8);
             color: white;
-            padding: 12px 20px;
+            padding: 8px 16px;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             transition: all 0.3s ease;
             backdrop-filter: blur(10px);
             border: 2px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            white-space: nowrap;
         }
 
         .github-link:hover {
             background: rgba(0, 0, 0, 0.9);
             color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
             text-decoration: none;
         }
 
         .github-link i {
-            margin-right: 8px;
-            font-size: 1.1rem;
+            margin-right: 6px;
+            font-size: 1rem;
         }
 
         @media (max-width: 768px) {
             .github-link {
-                top: 10px;
-                right: 10px;
-                padding: 10px 15px;
-                font-size: 0.8rem;
+                padding: 6px 12px;
+                font-size: 0.75rem;
+            }
+            
+            .github-link i {
+                margin-right: 4px;
+                font-size: 0.9rem;
             }
         }
     </style>
 </head>
 <body class="font-inter bg-white">
-    <!-- GitHub Link -->
-    <a href="https://github.com/mrsanketpatil19/House_Price_Prediction" target="_blank" class="github-link">
-        <i class="fab fa-github"></i>View Code
-    </a>
-
     <!-- Navigation -->
     <nav class="bg-white shadow-sm border-b border-gray-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -115,6 +112,9 @@
                     <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-300">
                         Sign In
                     </button>
+                    <a href="https://github.com/mrsanketpatil19/House_Price_Prediction" target="_blank" class="github-link">
+                        <i class="fab fa-github"></i>View Code
+                    </a>
                 </div>
             </div>
         </div>
